@@ -40,7 +40,7 @@
     struct ZJVideoSize expectedSize = {[self.exWidthTf.text integerValue],[self.exHeightTf.text integerValue]};
     self.manager = [ZJVideoManager shareIntance];
     self.manager.delegate = self;
-    [self.manager registerOEMApiServer:@"cs.zijingcloud.com"];
+    [self.manager setApiServer:@"cs.zijingcloud.com"];
     NSMutableDictionary *conferenceModel = [NSMutableDictionary dictionary];
     [conferenceModel ZJSDKVideoJoinConferenceWithTarget:self.NumberTf.text
                                             displayName:self.DisplayName.text

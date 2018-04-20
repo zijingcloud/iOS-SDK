@@ -31,6 +31,11 @@ typedef NS_ENUM(NSInteger, ZJVideoParamState){
   ZJVideoParam_VGA  = 3, /** < 640 640 640x360 640x360 > **/
 };
 
+typedef NS_ENUM(NSInteger, ZJVideoType){
+  ZJVideoTypeWithVideo  = 0, /** < 音视频正常入会 > **/
+  ZJVideoTypeWithHideMe = 1  /** < 隐身加入会议 > **/
+};
+
 typedef void(^ZJVideoSDKCompletionHandler) (NSData *  data,NSURLResponse *  response,NSError *  error);
 
 #endif /* ZJSDKTypeDefine_h */

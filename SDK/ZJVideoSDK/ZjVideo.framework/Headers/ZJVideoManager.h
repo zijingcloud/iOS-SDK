@@ -47,6 +47,7 @@
 @property(nonatomic,strong) UIView *conferenceView;
 @property(nonatomic, copy) NSString *cartificateName;
 @property(nonatomic, copy) NSString *voipToken;
+@property(nonatomic, copy) NSString *apiServer;
 
 /**
  *  实现功能 : 单例
@@ -58,7 +59,7 @@
  *  @param apiServer :  私有云Api地址
  *  @retrun : 是否注册成功
  */
-- (BOOL)registerOEMApiServer:(NSString *)apiServer;
+- (void)setApiServer:(NSString *)apiServer;
 
 /**
  *  实现功能 : 设置Voip Push Cartificate Name (推送服务证书名称)

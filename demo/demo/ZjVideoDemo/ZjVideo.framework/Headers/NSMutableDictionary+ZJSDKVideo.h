@@ -13,7 +13,7 @@
 
 
 /**
- *  加入会议的时候需要的参数（必须赋值的参数）
+ *  加入会议的时候需要的参数  快速入会 （必须赋值的参数）
  *  @param target      : 入会长地址／短号
  *  @param displayName : 入会显示名称
  *  @param pwd         : 入会密码，对应身份输入相应的的密码
@@ -21,6 +21,18 @@
 - (void)ZJSDKVideoJoinConferenceWithTarget:(NSString *)target
                                displayName:(NSString *)displayName
                                   password:(NSString *)pwd;
+
+/**
+ *  加入会议的时候需要的参数 可改变入会方式 （必须赋值的参数）
+ *  @param target      : 入会长地址／短号
+ *  @param displayName : 入会显示名称
+ *  @param pwd         : 入会密码，对应身份输入相应的的密码
+ *  @param videoType   : 入会方式
+ */
+- (void)ZJSDKVideoJoinConferenceWithTarget:(NSString *)target
+                               displayName:(NSString *)displayName
+                                  password:(NSString *)pwd
+                                 videoType:(ZJVideoType )type;
 
 
 /**

@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="apiServerTf" destination="dAA-pt-Qin" id="hor-yK-3ye"/>
                 <outlet property="displayNameTf" destination="pXJ-iR-IPg" id="MI0-E7-btT"/>
+                <outlet property="isVideo" destination="onQ-ax-Nai" id="hQE-kE-vM1"/>
                 <outlet property="passwordTf" destination="ULl-A0-5ba" id="uth-kK-6a1"/>
                 <outlet property="sipkeyTf" destination="cio-5G-dy5" id="tET-Wm-Ato"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -96,6 +97,17 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="隐身入会" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAP-Pt-FLE">
+                    <rect key="frame" x="41" y="341" width="58" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-ax-Nai">
+                    <rect key="frame" x="286" y="336" width="49" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </switch>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

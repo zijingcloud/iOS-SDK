@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTf;
 @property (weak, nonatomic) IBOutlet UITextField *apiServerTf;
 @property (weak, nonatomic) IBOutlet UITextField *displayNameTf;
+@property (weak, nonatomic) IBOutlet UISwitch *isVideo;
 @property (weak, nonatomic) IBOutlet UITextField *inBandTf;
 @property (weak, nonatomic) IBOutlet UITextField *outBandtf;
 @property (weak, nonatomic) IBOutlet UITextField *minWidth;
@@ -35,7 +36,6 @@
     [super viewDidLoad];
     self.manager = [ZJVideoManager shareIntance];
     self.manager.delegate = self;
-    [self.manager registerOEMApiServer:self.apiServerTf.text];
     
 //    self.navigationItem.title = @"呼叫";
     
@@ -62,12 +62,15 @@
     NSMutableDictionary *conferenceModel = [NSMutableDictionary dictionary];
     [conferenceModel ZJSDKVideoJoinConferenceWithTarget:self.sipkeyTf.text
                                             displayName:self.displayNameTf.text
-                                               password:self.passwordTf.text];
+                                               password:self.passwordTf.text
+                                              videoType:self.isVideo.isOn == YES ? ZJVideoTypeWithHideMe : ZJVideoTypeWithVideo];
     NSLog(@"入会参数： -- %@",conferenceModel);
     
     NSMutableDictionary *videoParams = [NSMutableDictionary dictionary];
     struct ZJVideoSize minSize = {[self.minWidth.text integerValue],[self.minHeightTf.text integerValue]};
     struct ZJVideoSize expectedSize = {[self.expectedWidth.text integerValue],[self.expectedHeight.text integerValue]};
+    
+    [self.manager setApiServer:self.apiServerTf.text];
     
     [videoParams ZJSDKVideoParamWithMinBandWidth:[self.inBandTf.text integerValue]
                                expectedBandwidth:[self.outBandtf.text integerValue]
@@ -77,39 +80,25 @@
                                     expectedSize:expectedSize];
     NSLog(@"视频参数： -- %@",videoParams);
     
-//    [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//        [self requestMeetingInfor];
-//    }];
     [self.manager connectWithModel:conferenceModel
                        videoParams:videoParams
                   showFunctionItem:YES
                 isAutoPrePresentVC:YES];
 }
 
--(void)requestMeetingInfor{
-    NSURL *url = [NSURL URLWithString:@"https://cs.zijingcloud.com/api/getmeetinginfo?addr=2207"];
-    NSLog(@"request -- :%@",[url absoluteString]);
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod =@"GET";
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError * _Nullable error) {
-        NSLog(@"qingqiuzhong");
-    }];
-    
-    [dataTask resume];
-}
 
 //通过自定义的方式入会
 - (IBAction)clickJoinCostum:(id)sender {
     struct ZJVideoSize minSize = {[self.minWidth.text integerValue],[self.minHeightTf.text integerValue]};
     struct ZJVideoSize expectedSize = {[self.expectedWidth.text integerValue],[self.expectedHeight.text integerValue]};
     
+    [self.manager setApiServer:self.apiServerTf.text];
+    
     NSMutableDictionary *conferenceModel = [NSMutableDictionary dictionary];
     [conferenceModel ZJSDKVideoJoinConferenceWithTarget:self.sipkeyTf.text
                                             displayName:self.displayNameTf.text
-                                               password:self.passwordTf.text];
-    NSLog(@"入会参数： -- %@",conferenceModel);
+                                               password:self.passwordTf.text
+                                              videoType:self.isVideo.isOn == YES ? ZJVideoTypeWithHideMe : ZJVideoTypeWithVideo];
     
     NSMutableDictionary *videoParams = [NSMutableDictionary dictionary];
     [videoParams ZJSDKVideoParamWithMinBandWidth:[self.inBandTf.text integerValue]
@@ -168,10 +157,10 @@
 
 -(void)zjLogPercentageLost:(NSDictionary *)packet{
     NSDictionary *objectInfor = packet;
-//    NSLog(@"接受audio丢包率:%@,接受video丢包率:%@,发送audio丢包率:%@,发送video丢包率:%@",objectInfor[@"incomingAudioPL"],
-//          objectInfor[@"incomingAudioPL"],
-//          objectInfor[@"outgoingVideoPL"],
-//          objectInfor[@"outgoingVideoPL"]);
+    NSLog(@"接受audio丢包率:%@,接受video丢包率:%@,发送audio丢包率:%@,发送video丢包率:%@",objectInfor[@"incomingAudioPL"],
+          objectInfor[@"incomingAudioPL"],
+          objectInfor[@"outgoingVideoPL"],
+          objectInfor[@"outgoingVideoPL"]);
 }
 
 -(void)zjCallBackWithState:(ZJSDKCallState)state

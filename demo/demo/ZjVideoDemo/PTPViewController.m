@@ -33,7 +33,7 @@ NSString *const REJECTEDCALL = @"REJECTEDCALL";
     self.manager = [ZJVideoManager shareIntance];
     self.manager.delegate = self;
     [self.manager setCartificateName:@"zijingcloud"];
-    [self.manager registerOEMApiServer:@"cs.zijingcloud.com"];
+//    [self.manager setApiServer:@""];
     self.incommingDict = [NSDictionary dictionary];
     
     [[NSNotificationCenter defaultCenter]addObserver:self
