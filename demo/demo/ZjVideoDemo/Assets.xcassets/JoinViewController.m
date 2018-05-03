@@ -63,7 +63,8 @@
     [conferenceModel ZJSDKVideoJoinConferenceWithTarget:self.sipkeyTf.text
                                             displayName:self.displayNameTf.text
                                                password:self.passwordTf.text
-                                              videoType:self.isVideo.isOn == YES ? ZJVideoTypeWithHideMe : ZJVideoTypeWithVideo];
+                                              videoType:self.isVideo.on ? ZJVideoTypeWithHideMe:
+                                                  ZJVideoTypeWithVideo];
     NSLog(@"入会参数： -- %@",conferenceModel);
     
     NSMutableDictionary *videoParams = [NSMutableDictionary dictionary];
@@ -98,7 +99,7 @@
     [conferenceModel ZJSDKVideoJoinConferenceWithTarget:self.sipkeyTf.text
                                             displayName:self.displayNameTf.text
                                                password:self.passwordTf.text
-                                              videoType:self.isVideo.isOn == YES ? ZJVideoTypeWithHideMe : ZJVideoTypeWithVideo];
+                                            videoType:self.isVideo.isOn == YES ? ZJVideoTypeWithHideMe : ZJVideoTypeWithVideo];
     
     NSMutableDictionary *videoParams = [NSMutableDictionary dictionary];
     [videoParams ZJSDKVideoParamWithMinBandWidth:[self.inBandTf.text integerValue]
