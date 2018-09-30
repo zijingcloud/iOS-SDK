@@ -1,0 +1,6 @@
+framework module ZjVideo {
+  umbrella header "ZjVideo.h"
+
+  export *
+  module * { export * }
+}
