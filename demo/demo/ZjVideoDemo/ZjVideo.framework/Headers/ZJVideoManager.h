@@ -154,8 +154,8 @@
  */
 
 - (void)inviteUserAccount:(NSString *)account
-                 withRole:(NSString *)role
-             withProtocol:(NSString *)protocol;
+                 withRole:(InviteParticipantRole )role
+             withProtocol:(InviteParticipantProtocol )protocol;
 
 /**
  *  Deprecated

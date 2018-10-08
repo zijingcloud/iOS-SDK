@@ -36,6 +36,19 @@ typedef NS_ENUM(NSInteger, ZJVideoType){
   ZJVideoTypeWithHideMe = 1  /** < 隐身加入会议 > **/
 };
 
+typedef NS_ENUM(NSInteger, InviteParticipantRole) {
+  InviteParticipantRoleHost = 0,
+  InviteParticipantRoleGuest = 1
+};
+
+typedef NS_ENUM(NSInteger , InviteParticipantProtocol) {
+  InviteParticipantProtocolSip = 0,
+  InviteParticipantProtocolH323 = 1,
+  InviteParticipantProtocolRtmp = 2,
+  InviteParticipantProtocolMssip = 3,
+  InviteParticipantProtocolAuto = 4
+};
+
 typedef void(^ZJVideoSDKCompletionHandler) (NSData *  data,NSURLResponse *  response,NSError *  error);
 
 #endif /* ZJSDKTypeDefine_h */
