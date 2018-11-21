@@ -43,7 +43,8 @@
     NSMutableDictionary *conferenceModel = [NSMutableDictionary dictionary];
     [conferenceModel ZJSDKVideoJoinConferenceWithTarget:self.sipkeyTf.text
                                             displayName:self.displayNameTf.text
-                                               password:self.passwordTf.text];
+                                               password:self.passwordTf.text
+                                              videoType:ZJVideoTypeWithHideMe];
     
     NSLog(@"入会参数： -- %@",conferenceModel);
     NSMutableDictionary *videoParams = [NSMutableDictionary dictionary];
