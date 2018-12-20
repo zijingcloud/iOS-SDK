@@ -58,8 +58,6 @@ ZJRTCSDK 是紫荆云平台iOS端Obective-C版本SDK。ZJRTCSDK 可以帮助您�
 
 ## 构建音视频通话 - ZJRTC.framework
 
-ZJRTCSDK 是紫荆云平台iOS端Obective-C版本SDK。ZJRTCSDK 可以帮助您在十分钟内快速搭建基于浏览器的音视频应用。ZJRTCSDK 使用WebRTC协议构建音视频通话服务，让您轻松应对一对一、多对多音视频通话及实时数据传输等复杂应用场景。本文档帮助你快速集成ZJRTCSDK 到你的项目中。 
-
 ----
 
 ### SDK 集成说明
