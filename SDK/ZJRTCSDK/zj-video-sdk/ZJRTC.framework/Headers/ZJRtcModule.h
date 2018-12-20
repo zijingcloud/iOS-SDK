@@ -11,13 +11,15 @@
 #import <UIKit/UIKit.h>
 
 @class RTCMediaStream;
+
 @class RTCPeerConnectionFactory;
 @class ZJRtcModule;
 @class ZJVideoView;
 @class Participant;
 @class ZJQualityParams ;
 @class ZjMeetingManageModule ;
-
+@class ZJMediaStat ;
+@class ZJMediaStat;
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^successBlock)(id response);
 typedef void(^failureBlock)(NSError *);
@@ -36,27 +38,29 @@ typedef void(^failureBlock)(NSError *);
 - (void)ZJRtc:(ZJRtcModule *)module didRemoveParticipant:(Participant *)participant;
 - (void)ZJRtc:(ZJRtcModule *)module didReceivedMessage:(NSDictionary *)message;
 - (void)ZJRtc:(ZJRtcModule *)module didReceivedStageVoice:(NSArray *)voices;
+- (void)ZJRtc:(ZJRtcModule *)module didReceivedStatistics:(NSArray<ZJMediaStat *> *)mediaStats;
 
 // by add li
 - (void)ZJRtc:(ZJRtcModule *)module didLayoutParticipants:(NSArray *)participants;
+- (void)ZJRtc:(ZJRtcModule *)module didStartImage:(NSString *)imageStr;
 - (void)ZJRtc:(ZJRtcModule *)module didUpdateImage:(NSString *)imageStr uuid:(NSString *)uuid;
 - (void)ZJRtc:(ZJRtcModule *)module didStopImage:(NSString *)imageStr;
 - (void)ZJRtc:(ZJRtcModule *)module recordAndlive:(NSDictionary *)data;
 - (void)ZJRtc:(ZJRtcModule *)module layoutChange:(NSDictionary *)data ;
-
 @end
 
 @interface ZJRtcModule : NSObject
 @property(nonatomic, weak) id <ZJRtcModuleDelegate> delegate;
 @property(nonatomic, strong) NSString *apiServer;
-@property(nonatomic, assign) NSUInteger bandwidth; //  default: 1024kbps
-@property(nonatomic, strong) NSString *oemId; // only shitong;
-@property(nonatomic, strong, readonly) NSString *uuid;
 @property(nonatomic, strong) NSString *groupId;
+@property(nonatomic, assign) NSUInteger bandwidth; //  default: 1024kbps
+@property(nonatomic, strong, readonly) NSString *uuid;
 @property(nonatomic, strong, readonly) NSMutableDictionary<NSString *, Participant *> *rosterList;
-@property(nonatomic, assign) UIDeviceOrientation forceOrientation; // default none
-
+@property(nonatomic, strong) NSString *oemId; // only shitong;
+@property(nonatomic, assign) UIDeviceOrientation forceOrientation; // default none;
 + (instancetype)sharedInstance;
+
+- (void)enableStatistics:(BOOL)enable;
 
 - (void)loginWithUsername:(NSString *)name
                  password:(NSString *)password
@@ -133,9 +137,16 @@ typedef void(^failureBlock)(NSError *);
                    guest:(NSString *)glayout
           conferenceType:(ZJConferenceType )type
                  success:(successBlock)success
-                 failure:(failureBlock)failure;
+                 failure:(failureBlock)failure ;
 
 - (void)reconnectCall ;
+
+- (void)stopRecordScreen ;
+
+- (void)stickParticipant:(NSString *)participant
+                 onStick:(BOOL )stick
+                 success:(successBlock)success
+                 failure:(failureBlock)failure ;
 
 @end
 

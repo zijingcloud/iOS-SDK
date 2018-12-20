@@ -23,8 +23,8 @@ typedef void(^failureBlock)(NSError *);
 - (void)ZJMeetingManage:(ZjMeetingManageModule *)module layoutChange:(NSDictionary *)data;
 - (void)ZJMeetingManage:(ZjMeetingManageModule *)module conferenceChange:(NSDictionary *)data;
 - (void)ZJMeetingManage:(ZjMeetingManageModule *)module recordAndlive:(NSDictionary *)data;
-- (void)ZJMeetingManage:(ZjMeetingManageModule *)module tokenChange:(NSDictionary *)data;
-- (void)ZJMeetingManage:(ZjMeetingManageModule *)module qualityChange:(NSDictionary *)data;
+- (void)ZJMeetingManage:(ZjMeetingManageModule *)module tokenChange:(NSDictionary *)data ;
+- (void)ZJMeetingManage:(ZjMeetingManageModule *)module qualityChange:(NSDictionary *)data ;
 - (void)ZJMeetingManage:(ZjMeetingManageModule *)module updateParticipants:(NSArray *)participants ;
 
 @end
