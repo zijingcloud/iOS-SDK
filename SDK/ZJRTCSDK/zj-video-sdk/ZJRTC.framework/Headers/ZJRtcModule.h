@@ -11,21 +11,18 @@
 #import <UIKit/UIKit.h>
 
 @class RTCMediaStream;
-
 @class RTCPeerConnectionFactory;
 @class ZJRtcModule;
 @class ZJVideoView;
 @class Participant;
-@class ZJQualityParams ;
-@class ZjMeetingManageModule ;
-@class ZJMediaStat ;
+@class ZJQualityParams;
 @class ZJMediaStat;
+
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^successBlock)(id response);
 typedef void(^failureBlock)(NSError *);
 @protocol ZJRtcModuleDelegate <NSObject>
 @optional
-//- (void)ZJRtc:(ZJRtcModule *)module didAddChannelViewController:(ZJVideoView *)view;
 // change to
 - (void)ZJRtc:(ZJRtcModule *)module didAddChannelViewController:(UIViewController *)view;
 
@@ -47,6 +44,9 @@ typedef void(^failureBlock)(NSError *);
 - (void)ZJRtc:(ZJRtcModule *)module didStopImage:(NSString *)imageStr;
 - (void)ZJRtc:(ZJRtcModule *)module recordAndlive:(NSDictionary *)data;
 - (void)ZJRtc:(ZJRtcModule *)module layoutChange:(NSDictionary *)data ;
+- (void)ZJRtc:(ZJRtcModule *)module conferenceChange:(NSDictionary *)data;
+- (void)ZJRtc:(ZJRtcModule *)module updateParticipants:(NSArray *)participants;
+
 @end
 
 @interface ZJRtcModule : NSObject
@@ -69,7 +69,6 @@ typedef void(^failureBlock)(NSError *);
                   success:(successBlock)success
                   failure:(failureBlock)failure ;
 
-
 - (void)connectChannel:(nonnull NSString *)channel
               password:(NSString *)password
                   name:(nonnull NSString *)name
@@ -77,7 +76,6 @@ typedef void(^failureBlock)(NSError *);
                failure:(void (^)(NSError *))failure ;
 
 // only yunshi
-
 - (void)reconnect;
 
 - (void)exitChannelSuccess:(successBlock)success failure:(failureBlock)failure;
@@ -105,48 +103,35 @@ typedef void(^failureBlock)(NSError *);
 - (void)disableLiveSuccess:(successBlock)success failure:(failureBlock)failure;
 - (void)disableRecordSuccess:(successBlock)success failure:(failureBlock)failure;
 
-
 // by add li
 @property(nonatomic, strong) NSString *role ; // 参会者身份
-@property(nonatomic, strong) ZjMeetingManageModule *manageModule ;
-@property(nonatomic, strong) NSArray *videoUri ; // 入会界面
+@property(nonatomic, strong) NSArray *videoUri ;
 
+// Config Before Connect
+- (void)configConnectType:(ZJConnectType )connectType ;
+- (void)configVideoProfile:(ZJVideoProfile )profile ;
+- (void)configMultistream:(BOOL )multistream ;
+- (void)configLoginAccount:(NSString *)account ;
+- (void)configUseDefultViewController:(BOOL )isUsed ;
+- (void)configPTPOneTimeToken:(NSString *)token andBsskey:(NSString *)bsskey andStamp:(NSString *)timeStamp ;
 
-- (void)shareImageWith:(NSData *)imageData
-                  open:(BOOL )open
-                change:(BOOL )change
-               success:(successBlock)success
-               failure:(failureBlock)failure ;
+// Control Meeting metheds
+- (void)lockMeeting:(BOOL )lock success:(successBlock)success failure:(failureBlock)failure ;
+- (void)muteAllGuest:(BOOL )mute success:(successBlock)success failure:(failureBlock)failure ;
+- (void)shareImageData:(NSData *)imageData open:(BOOL )open change:(BOOL )change success:(successBlock)success failure:(failureBlock)failure ;
+- (void)layoutChangeHost:(NSString *)layout guest:(NSString *)glayout conferenceType:(ZJConferenceType )type success:(successBlock)success failure:(failureBlock)failure ;
 
-- (void)openAudioAndVideoQuality:(BOOL )open
-               completionHandler:(nullable void (^)(NSDictionary<NSString *, ZJQualityParams *> *stats))completionHandler;
-
-- (void)connectChannel:(nonnull NSString *)channel
-              password:(NSString *)password
-                  name:(nonnull NSString *)name
-               manager:(ZJConnectType )manageType
-          videoProfile:(ZJVideoProfile )profile
-           multistream:(BOOL )ismultistream
-              callName:(NSString *)callName
-          oneTimeToken:(NSString *)token
-             byAccount:(NSString *)account
-               success:(void (^)(id))success
-               failure:(void (^)(NSError *))failure ;
-
-- (void)layoutChangeHost:(NSString *)layout
-                   guest:(NSString *)glayout
-          conferenceType:(ZJConferenceType )type
-                 success:(successBlock)success
-                 failure:(failureBlock)failure ;
-
+// Control Participant metheds
+- (void)muteParticipan:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure ;
+- (void)undockParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
+- (void)changeNameParticipant:(NSDictionary *)participant withNewName:(NSString *)changedName success:(successBlock)success failure:(failureBlock)failure;
+- (void)changeRoleParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
+- (void)refusedToParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
+- (void)allowParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
+- (void)spolightParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
+- (void)stickParticipant:(NSString *)participant onStick:(BOOL )stick success:(successBlock)success failure:(failureBlock)failure ;
 - (void)reconnectCall ;
-
 - (void)stopRecordScreen ;
-
-- (void)stickParticipant:(NSString *)participant
-                 onStick:(BOOL )stick
-                 success:(successBlock)success
-                 failure:(failureBlock)failure ;
 
 @end
 

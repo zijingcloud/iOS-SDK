@@ -105,10 +105,30 @@ ZJRTCSDK 是紫荆云平台iOS端Obective-C版本SDK。ZJRTCSDK 可以帮助您�
 * api类型：属性 NSString *  
 * api参数：apiServer：Api Server Domain  
 
+#### 配置入会设置
+* api名称：  
+a - (void)configConnectType:(ZJConnectType )connectType ;  
+b - (void)configVideoProfile:(ZJVideoProfile )profile ;  
+c - (void)configMultistream:(BOOL )multistream ;  
+d - (void)configLoginAccount:(NSString *)account ;  
+e - (void)configUseDefultViewController:(BOOL )isUsed ;  
+f - (void)configPTPOneTimeToken:(NSString *)token andBsskey:(NSString *)bsskey andStamp:(NSString *)timeStamp ;  
+* api类型：实例方法  
+* api参数：  
+a connectType：入会类型(参加会议、仅管理会议、隐身入会、点对点通讯)，默认值为参加会议(ZJConnectTypeMeeting)。  
+b profile：入会音视频质量参数配置，默认值为480p(ZJVideoProfile480P)。  
+c multistream：入会接收流的方式（单流- 全编全解、 多流 - 转发）默认值为多流（YES）。   
+d account：登录到平台时，作为主叫的一方呼叫另一端或会议室。默认为空值。  
+e isUsed：根据现在的App需要，提供了一个默认的界面，配置此参数为YES 时，会自动推出默认界面的Controller。默认值为NO。  
+f token：被叫时提供的入会信令。bsskey：需要验证的key值。timeStamp：需要验证的时间戳。
+* 说明：入会时，上述config 的值为可选参数，可以根据需求不同设置相关值。  
+
 #### 登录用户名到平台
 * api名称：- (void)loginWithUsername:(NSString *)name  password:(NSString *)password phone:(NSString *)phone nickname:(NSString *)nickname success:(successBlock)success failure:(failureBlock)failure ;   
 * api类型：实例方法  
 * api参数：name：用户名  password：用户密码  phone：用户绑定手机号码  nickname：用户注册名称     success：成功回调  failure：失败回调  
+* 说明：入会时，上述值为必填参数。  
+
 
 #### 配置音视频通讯需要的参数
 * api名称：- (void)connectChannel:(nonnull NSString *)channel password:(NSString *)password name:(nonnull NSString *)name success:(void (^)(id))success failure:(void (^)(NSError *))failure ;
@@ -134,15 +154,18 @@ c 删除远端视频。仅在转发模式入会时有效。
 * api名称：  
 a - (void)micEnable:(BOOL)enabled;  
 b - (void)videoEnable:(BOOL)enabled;  
-c - (void)switchCamera;  
-* api类型：实例方法   
+c - (void)switchCamera; 
+d forceOrientation ; 
+* api类型：a b c 实例方法  d 属性 UIDeviceOrientation  
 * api参数：  
 a enabled：开启/关闭麦克风  
 b enabled：开启/关闭摄像头  
+d forceOrientation：摄像头采集的固定方向。
 * api作用：  
 a 开启/关闭麦克风。  
 b 开启/关闭摄像头。  
-c 切换摄像头。  
+c 切换摄像头。
+d 设置摄像头采集的固定方向。  
 
 #### 重新连接本次会议
 * api名称：- (void)reconnect ;  
@@ -346,6 +369,7 @@ b 拒绝指定参会者加入会议。
 * api名称：groupId  
 * api类型：属性 NSString *  
 * api参数：groupId：在apple developer 申请的groupId  
+* 注意：app 中的ZJRTC.framework - ZJRtcModule.h 和ZJRTCScreenShare.framework - ScreenHelper.h 需要之前配置的相投group id 。  
 
 #### 连接到分享。
 * api名称：- (void)connect;  
@@ -362,7 +386,7 @@ b 拒绝指定参会者加入会议。
 
 ----
 
-## 版本 v2.0.0
+## 版本 v2.1.1 
 
 ----
 
