@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isWaiting;
 @property (nonatomic, assign) BOOL isConnecting;
 @property (nonatomic, assign) int vad;
+@property (nonatomic, strong) NSString *cStickUuid ;
 
 
 - (instancetype)initWithData:(NSDictionary *)data;

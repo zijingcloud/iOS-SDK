@@ -88,6 +88,9 @@ ZJRTCSDK 是紫荆云平台iOS端Obective-C版本SDK。ZJRTCSDK 可以帮助您�
 
 <img src="images/zjrtc_install_privacy.png" style="display:block;margin:auto" alt="initial sse flow">
 
+#### 添加资源到工程中：
+* 在 Project  -->  TARGETS  -->   Build Phases  -->  Copy Bundle Resources 添加一下ZjVideo.framwork的资源。
+
 ----
 
 ### 加入会议/点对点通讯

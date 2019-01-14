@@ -15,7 +15,6 @@
 @class ZJRtcModule;
 @class ZJVideoView;
 @class Participant;
-@class ZJQualityParams;
 @class ZJMediaStat;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -42,10 +41,10 @@ typedef void(^failureBlock)(NSError *);
 - (void)ZJRtc:(ZJRtcModule *)module didStartImage:(NSString *)imageStr;
 - (void)ZJRtc:(ZJRtcModule *)module didUpdateImage:(NSString *)imageStr uuid:(NSString *)uuid;
 - (void)ZJRtc:(ZJRtcModule *)module didStopImage:(NSString *)imageStr;
-- (void)ZJRtc:(ZJRtcModule *)module recordAndlive:(NSDictionary *)data;
-- (void)ZJRtc:(ZJRtcModule *)module layoutChange:(NSDictionary *)data ;
-- (void)ZJRtc:(ZJRtcModule *)module conferenceChange:(NSDictionary *)data;
-- (void)ZJRtc:(ZJRtcModule *)module updateParticipants:(NSArray *)participants;
+- (void)ZJRtc:(ZJRtcModule *)module didUpdateRecordAndlive:(NSDictionary *)data;
+- (void)ZJRtc:(ZJRtcModule *)module didUpdateLayout:(NSDictionary *)data ;
+- (void)ZJRtc:(ZJRtcModule *)module didUpdateConferenceStatus:(NSDictionary *)data;
+- (void)ZJRtc:(ZJRtcModule *)module didUpdateParticipants:(NSArray *)participants;
 
 @end
 
@@ -76,7 +75,8 @@ typedef void(^failureBlock)(NSError *);
                failure:(void (^)(NSError *))failure ;
 
 // only yunshi
-- (void)reconnect;
+- (void)reconnect ;
+- (void)reMakeMediaCall ;
 
 - (void)exitChannelSuccess:(successBlock)success failure:(failureBlock)failure;
 
@@ -119,18 +119,17 @@ typedef void(^failureBlock)(NSError *);
 - (void)lockMeeting:(BOOL )lock success:(successBlock)success failure:(failureBlock)failure ;
 - (void)muteAllGuest:(BOOL )mute success:(successBlock)success failure:(failureBlock)failure ;
 - (void)shareImageData:(NSData *)imageData open:(BOOL )open change:(BOOL )change success:(successBlock)success failure:(failureBlock)failure ;
-- (void)layoutChangeHost:(NSString *)layout guest:(NSString *)glayout conferenceType:(ZJConferenceType )type success:(successBlock)success failure:(failureBlock)failure ;
+- (void)updateLayoutHost:(NSString *)layout guest:(NSString *)glayout conferenceType:(ZJConferenceType )type success:(successBlock)success failure:(failureBlock)failure ;
 
 // Control Participant metheds
-- (void)muteParticipan:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure ;
-- (void)undockParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
+- (void)muteParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure ;
+- (void)removeParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
 - (void)changeNameParticipant:(NSDictionary *)participant withNewName:(NSString *)changedName success:(successBlock)success failure:(failureBlock)failure;
 - (void)changeRoleParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
 - (void)refusedToParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
 - (void)allowParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
 - (void)spolightParticipant:(NSDictionary *)participant success:(successBlock)success failure:(failureBlock)failure;
 - (void)stickParticipant:(NSString *)participant onStick:(BOOL )stick success:(successBlock)success failure:(failureBlock)failure ;
-- (void)reconnectCall ;
 - (void)stopRecordScreen ;
 
 @end
