@@ -1,6 +1,0 @@
-framework module ZJRTC {
-  umbrella header "ZJRTC.h"
-
-  export *
-  module * { export * }
-}
