@@ -3,7 +3,7 @@
 //  VCRTCScreenShare
 //
 //  Created by 李志朋 on 2018/12/17.
-//  Copyright © 2018年 zijingcloud. All rights reserved.
+//  Copyright © 2018年 vcloud. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

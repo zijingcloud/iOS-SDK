@@ -65,7 +65,7 @@ VCRTCSDK 是紫荆云平台iOS端Obective-C版本SDK。VCRTCSDK 可以帮助您�
 #### 导入sdk文件 
 * 添加目录video-sdk中的VCRTC.framework & WebRTC.framework 到工程中。
 
-<img src="images/vcCrtc_install_sdk.png" style="display:block;margin:auto" alt="initial sse flow">
+<img src="images/vcrtc_install_sdk.png" style="display:block;margin:auto" alt="initial sse flow">
 
 #### 重新导入库文件
 * 确保Embedded Binaries 和 Linked Frameworks and Libraries 中添加VCRTC.framework & WebRTC.framework。
@@ -115,7 +115,8 @@ b - (void)configVideoProfile:(VCVideoProfile )profile ;
 c - (void)configMultistream:(BOOL )multistream ;  
 d - (void)configLoginAccount:(NSString *)account ;  
 e - (void)configUseDefultViewController:(BOOL )isUsed ;  
-f - (void)configPTPOneTimeToken:(NSString *)token andBsskey:(NSString *)bsskey andStamp:(NSString *)timeStamp ;  
+f - (void)configPTPOneTimeToken:(NSString *)token andBsskey:(NSString *)bsskey andStamp:(NSString *)timeStamp ;   
+g - (voip)configPrivateCloudPlatform:(BOOL )isPrivateCloud ;    
 * api类型：实例方法  
 * api参数：  
 a connectType：入会类型(参加会议、仅管理会议、隐身入会、点对点通讯)，默认值为参加会议(VCConnectTypeMeeting)。  
@@ -123,7 +124,8 @@ b profile：入会音视频质量参数配置，默认值为480p(VCVideoProfil
 c multistream：入会接收流的方式（单流- 全编全解、 多流 - 转发）默认值为多流（YES）。   
 d account：登录到平台时，作为主叫的一方呼叫另一端或会议室。默认为空值。  
 e isUsed：根据现在的App需要，提供了一个默认的界面，配置此参数为YES 时，会自动推出默认界面的Controller。默认值为NO。  
-f token：被叫时提供的入会信令。bsskey：需要验证的key值。timeStamp：需要验证的时间戳。
+f token：被叫时提供的入会信令。bsskey：需要验证的key值。timeStamp：需要验证的时间戳。  
+g isPrivateCloud : 主要设置到专属云平台。默认为No（公有云平台）
 * 说明：入会时，上述config 的值为可选参数，可以根据需求不同设置相关值。  
 
 #### 登录用户名到平台
@@ -329,6 +331,8 @@ b - (void)refusedToParticipant:(NSDictionary *)participant success:(successBlock
 此时参会者状态为，会议室已经锁定，参会者以访客身份入会。相当参会者在敲门。  
 a 允许指定参会者加入会议。  
 b 拒绝指定参会者加入会议。  
+
+###
 
 ----
 ----
