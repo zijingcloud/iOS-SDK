@@ -511,7 +511,7 @@ typedef void(^failureBlock)(NSError * error);
                           open:(BOOL )open
                         change:(BOOL )change
                        success:(successBlock)success
-                       failure:(failureBlock)failure;
+                       failure:(failureBlock)failure ;
 
 /**
  分享图片类型为白板方式到会中

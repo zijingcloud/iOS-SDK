@@ -24,7 +24,7 @@
     self.views = [NSMutableArray new];
     
     self.vcrtc = [VCRtcModule sharedInstance];
-    self.vcrtc.apiServer = @"xjhdvc.cn";
+    self.vcrtc.apiServer = @"bss.lalonline.cn";
     self.vcrtc.delegate = self;
     self.vcrtc.bandwidth = 1024;
     self.vcrtc.oemId = @"default";
@@ -33,7 +33,7 @@
         [self.vcrtc configConnectType:VCConnectTypeMeeting];
         [self.vcrtc configVideoProfile:VCVideoProfile480P];
         [self.vcrtc configMultistream:YES];
-        [self.vcrtc connectChannel:@"2209" password:@"201904" name:@"test_ios_demo_1" success:^(id _Nonnull re) {
+        [self.vcrtc connectChannel:@"1866" password:@"123456" name:@"test_ios_demo_1" success:^(id _Nonnull re) {
             
         } failure:^(NSError * _Nonnull er) {
             NSLog(@"--%@",er);
