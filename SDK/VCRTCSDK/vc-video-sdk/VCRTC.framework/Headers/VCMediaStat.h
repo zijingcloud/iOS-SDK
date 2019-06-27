@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger frameRate;
 @property (nonatomic, assign) double timestamp; // unit: milliseconds since 1970;
 @property (nonatomic, assign) double percentageLost; // 100%
+@property (nonatomic, assign) double jitter ;
 
 - (NSString *)description;
 @end

@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *uri;
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSString *vendor;
-// for zipeng
+// for zhipeng
 @property (nonatomic, strong) NSString *ssrc;
 @property (nonatomic, strong) NSString *serviceType;
 @property (nonatomic, assign) int spotlight;

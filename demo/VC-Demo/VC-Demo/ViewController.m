@@ -24,19 +24,16 @@
     self.views = [NSMutableArray new];
     
     self.vcrtc = [VCRtcModule sharedInstance];
-    self.vcrtc.apiServer = @"bss.lalonline.cn";
+    self.vcrtc.apiServer = @"xjhdvc.cn";
     self.vcrtc.delegate = self;
     self.vcrtc.bandwidth = 1024;
     self.vcrtc.oemId = @"default";
     self.vcrtc.groupId = @"group.com.zijingcloud.grouptest";
     [self.vcrtc loginWithUsername:@"" password:@"" phone:@"" nickname:@"" success:^(id  _Nonnull response) {
-        [self.vcrtc configConnectType:VCConnectTypeMeeting
-         ];
+        [self.vcrtc configConnectType:VCConnectTypeMeeting];
         [self.vcrtc configVideoProfile:VCVideoProfile480P];
         [self.vcrtc configMultistream:YES];
-        [self.vcrtc configLoginAccount:@"test_ios_demo@zijingcloud.com"];
-        [self.vcrtc configPTPOneTimeToken:@"" andBsskey:@"" andStamp:@""];
-        [self.vcrtc connectChannel:@"2207" password:@"123456" name:@"test_ios_demo" success:^(id _Nonnull re) {
+        [self.vcrtc connectChannel:@"2209" password:@"201904" name:@"test_ios_demo_1" success:^(id _Nonnull re) {
             
         } failure:^(NSError * _Nonnull er) {
             NSLog(@"--%@",er);
@@ -136,7 +133,7 @@
 }
 
 - (void)reconnect{
-    [self.vcrtc reMakeMediaCall];
+    [self.vcrtc reconstructionMediaCall];
 }
 
 - (void)reEnter{
