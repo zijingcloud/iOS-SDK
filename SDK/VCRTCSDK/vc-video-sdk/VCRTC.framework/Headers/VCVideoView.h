@@ -3,7 +3,7 @@
 //  webrtc-iOS-demo
 //
 //  Created by starcwl on 10/12/18.
-//  Copyright © 2018 zijingcloud. All rights reserved.
+//  Copyright © 2018 vcloud. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

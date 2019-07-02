@@ -3,7 +3,7 @@
 //  VCRTC
 //
 //  Created by starcwl on 11/14/18.
-//  Copyright © 2018 zijingcloud. All rights reserved.
+//  Copyright © 2018 vcloud. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
