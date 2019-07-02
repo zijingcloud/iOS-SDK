@@ -33,6 +33,7 @@
         [self.vcrtc configConnectType:VCConnectTypeMeeting];
         [self.vcrtc configVideoProfile:VCVideoProfile480P];
         [self.vcrtc configMultistream:YES];
+        /*  */
         [self.vcrtc connectChannel:@"1866" password:@"123456" name:@"test_ios_demo_1" success:^(id _Nonnull re) {
             
         } failure:^(NSError * _Nonnull er) {

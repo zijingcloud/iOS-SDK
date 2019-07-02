@@ -21,10 +21,11 @@ typedef NS_ENUM(NSUInteger, VCCallState) {
 //音视频质量
 typedef NS_ENUM(NSInteger, VCVideoProfile){
     VCVideoProfileNone = 0,//不限制
-    VCVideoProfile480P,//480像素
     VCVideoProfile720P,//720像素
+    VCVideoProfile480P,//480像素
     VCVideoProfile360P,//360像素
     VCVideoProfile180P,//180像素
+    VCVideoProfileCustom // 自定义
 };
 
 // 会议类型
@@ -54,8 +55,8 @@ typedef NS_ENUM(NSInteger, VCCallType ) {
 
 // 视频发送、接收的方式
 typedef NS_ENUM(NSInteger, VCVideoSRType ) {
-    VCVideoSRTypeNormor,
-    VCVideoSRTypeSimulcast
+    VCVideoSRTypeNormor,//全编全解
+    VCVideoSRTypeSimulcast//转发
 } ;
 
 typedef NS_ENUM(NSInteger, VCServerRegister ) {
