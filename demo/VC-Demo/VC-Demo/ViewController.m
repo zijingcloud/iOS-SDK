@@ -24,17 +24,23 @@
     self.views = [NSMutableArray new];
     
     self.vcrtc = [VCRtcModule sharedInstance];
-    self.vcrtc.apiServer = @"bss.lalonline.cn";
-    self.vcrtc.delegate = self;
-    self.vcrtc.bandwidth = 1024;
-    self.vcrtc.oemId = @"default";
-    self.vcrtc.groupId = @"group.com.zijingcloud.grouptest";
-    [self.vcrtc loginWithUsername:@"" password:@"" phone:@"" nickname:@"" success:^(id  _Nonnull response) {
+    
+    /* 请联系管理管理员分配服务器地址 */
+    self.vcrtc.apiServer = <#  NSString #> ;
+    self.vcrtc.delegate = self ;
+    
+    /* 请联系管理管理员分配账号 */
+    [self.vcrtc loginWithUsername:<#  NSString #> password:<#  NSString #> phone:<#  NSString #> nickname:<#  NSString #> success:^(id  _Nonnull response) {
         [self.vcrtc configConnectType:VCConnectTypeMeeting];
-        [self.vcrtc configVideoProfile:VCVideoProfile480P];
+        [self.vcrtc configVideoProfile:VCVideoProfile360P];
         [self.vcrtc configMultistream:YES];
-        /*  */
-        [self.vcrtc connectChannel:@"1866" password:@"123456" name:@"test_ios_demo_1" success:^(id _Nonnull re) {
+        /* 构建专属云环境时，使用 */
+        //self.vcrtc.oemId = @"default";
+        //[self.vcrtc configPrivateCloudPlatform:YES];
+        /* 构建屏幕录制功能时，使用 */
+        //self.vcrtc.groupId = @"group.xxx";
+        /* 请联系管理管理员分配会议地址 */
+        [self.vcrtc connectChannel:<#  NSString #> password:<#  NSString #> name:<#  NSString #> success:^(id _Nonnull re) {
             
         } failure:^(NSError * _Nonnull er) {
             NSLog(@"--%@",er);

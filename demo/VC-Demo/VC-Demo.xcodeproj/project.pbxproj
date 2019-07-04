@@ -82,6 +82,7 @@
 		1C3CAE4A224220FC00BB003F /* VC-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				1CD707BB22CD95AC00B474E4 /* New Group */,
 				1C3CAE61224221A900BB003F /* Frameworks */,
 				1C3CAE4B224220FC00BB003F /* AppDelegate.h */,
 				1C3CAE4C224220FC00BB003F /* AppDelegate.m */,
@@ -120,6 +121,13 @@
 				1C3CAE66224221A900BB003F /* WebRTC.framework */,
 			);
 			path = "vc-video-sdk";
+			sourceTree = "<group>";
+		};
+		1CD707BB22CD95AC00B474E4 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
